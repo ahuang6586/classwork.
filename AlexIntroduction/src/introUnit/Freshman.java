@@ -2,9 +2,16 @@ package introUnit;
 
 public class Freshman extends Student {
 
-	public Freshman(String name) {
+	private String job;
+	
+	public Freshman(String name, String job) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		this.job = job; 
 	}
+	public void talk(){
+		System.out.println("I am a Freshman!");
+		System.out.println("I intern as a" +job);
 
+}
+	
 }

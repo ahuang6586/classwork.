@@ -17,8 +17,8 @@ public class OOPExample {
 	public static void main(String[] args) {
 		//construct a student
 		Student jillian = new Senior("Jillian","programmer");
-		Student jordan = new Student("Jordan");
-		Student jason = new Student("Jason");
+		Student jordan = new Student("Jordan","engineer");
+		Student jason = new Student("Jason","scientist");
 		jillian.talk();
 		
 		

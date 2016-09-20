@@ -1,10 +1,11 @@
 package introUnit;
 
 public class Junior extends Student {
-
-	public Junior(String name) {
+	
+	private class 
+	public Junior(String name, String club) {
 		super(name);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 }
