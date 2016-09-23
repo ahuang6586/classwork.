@@ -1,0 +1,123 @@
+package chatbot;
+
+
+public class School implements Topic{
+	
+	private boolean inSchoolLoop;
+	private String schoolResponse;
+	
+	public void talk() {
+		inSchoolLoop = true;
+		while (inSchoolLoop){
+			Main.print("Tell me about school.");
+			schoolResponse = Main.getInput();
+			if(schoolResponse.indexOf("stop")>=0){
+				inSchoolLoop =false;
+				Main.talkForever();
+				
+			}
+			Main.print("That's my favorite part about school too.");
+		}
+	}
+}
+
+--------------
+package chatbot;
+
+public interface Topic {
+	public void talk();
+}
+------------
+package chatbot;
+
+import java.util.Scanner;
+public class Main {static Scanner input;
+static String user;
+static boolean inLoop;
+static String response;
+static int lineCount;
+static Topic school;
+public static void main(String[] args) {
+	
+	createAScanner();
+	lineCount = 0;
+	
+
+	
+}
+
+
+private static void promptName() {
+	print("Hello, human! I am a board covered with "+"semiconductors and other such electronic components.What is your name?");
+	user = input.nextLine();
+	print("Awesome! I will call you "+user+" until you terminate me."); 
+}
+
+
+public static void promptInput() {
+	print("Try inputting a String!");
+	String userInput = input.nextLine(); 
+	print("You typed: " + userInput); //one input
+	
+	
+}
+public static String getInput(){
+	return input.nextLine();
+	
+}
+public static void print(String s){
+	//create a multi-line String
+	String printString = "";
+	int cutoff = 35;
+	//check to see if there are words to add
+	//(in other words, is the length of s >
+	
+	while(s.length()>0){
+		String currentLine = "";
+		String nextWord = "";
+		//while the currentLine and nextWord are less
+		//than the cutoff, AND there are still words to add
+		//do the following loop
+		while(currentLine.length() + nextWord.length() <= cutoff && s.length() > 0){
+			// add the next word to the line
+			currentLine += nextWord;
+			// remove that word
+			s = s.substring(nextWord.length());
+			//get the following word
+			int endOfWord = s.indexOf(" ");
+			//check to see if this is the last word
+			if(endOfWord == -1){
+				endOfWord = s.length() -1;
+			}
+			nextWord = s.substring(0, endOfWord+1);
+			
+		}
+		printString += currentLine + "\n";
+	}
+		System.out.println(printString);
+}
+public static void talkForever(){
+	inLoop = true;
+	while(inLoop){
+		print("Greetings, "+user+" . How are you? ");
+		response = getInput();
+		if(response.indexOf("good") >= 0){
+				print("I'm so happy you're good.");
+		}
+		else if (response.indexOf("school") >= 0){
+			inLoop = false;//exit this loop
+			school.talk();
+		}	
+			else {
+		
+			print("I'm sorry, I don't understand you.");
+		}
+	}
+}
+
+public static void createAScanner() {
+	input = new Scanner(System.in);
+	school = new School();
+}
+
+}
