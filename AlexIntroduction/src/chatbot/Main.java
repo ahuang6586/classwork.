@@ -84,6 +84,7 @@ public static void talkForever(){
 		else if (like.isTriggered(response)){
 			inLoop = false;
 			like.talk();
+		//lel
 		}
 		else if (hello.isTriggered(response)){
 				inLoop = false;
