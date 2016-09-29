@@ -25,7 +25,7 @@ public class AlexLike implements Topic{
 		}
 	}
 	public boolean isTriggered(String userInput) {
-		String[] triggers = {"school","class","teacher"};
+		//String[] triggers = {"school","class","teacher"};
 		//you could use a for loop
 		//to iterate through an array
 		if(Main.findKeyWord(userInput, "like", 0) >=0 ){
@@ -37,3 +37,4 @@ public class AlexLike implements Topic{
 		return false;
 	}
 }
+//ge
