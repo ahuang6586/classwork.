@@ -6,6 +6,8 @@ public class StringPractice {
 
 	static Scanner input;
 	static String user;
+	static boolean inLoop;
+	static String response;
 	static int lineCount;
 	public static void main(String[] args) {
 		
@@ -19,35 +21,66 @@ public class StringPractice {
 	
 
 	private static void promptName() {
-		print("Hello, human! I am a" + 
-	" board covered with "+"semiconductors /n and" 
-				+" other such electronic"
-				+			" components."
-				" /n  What is your name?");
+		print("Hello, human! I am a board covered with "+"semiconductors and other such electronic components.What is your name?");
 		user = input.nextLine();
-		print("Awesome! I will call you" +user+ "until you terminate me."); 
+		print("Awesome! I will call you "+user+" until you terminate me."); 
 	}
 
 
 	public static void promptInput() {
-		print(user+"Try inputting a String!");
+		print("Try inputting a String!");
 		String userInput = input.nextLine(); 
 		print("You typed: " + userInput); //one input
 		
 		
 	}
+	public static String getInput(){
+		return input.nextLine();
+		
+	}
 	public static void print(String s){
-		lineCount++;
-		System.out.println("Line #+lineCount+": "+s);
+		//create a multi-line String
+		String printString = "";
+		int cutoff = 35;
+		//check to see if there are words to add
+		//(in other words, is the length of s >
+		
+		while(s.length()>0){
+			String currentLine = "";
+			String nextWord = "";
+			//while the currentLine and nextWord are less
+			//than the cutoff, AND there are still words to add
+			//do the following loop
+			while(currentLine.length() + nextWord.length() <= cutoff && s.length() > 0){
+				// add the next word to the line
+				currentLine += nextWord;
+				// remove that word
+				s = s.substring(nextWord.length());
+				//get the following word
+				int endOfWord = s.indexOf(" ");
+				//check to see if this is the last word
+				if(endOfWord == -1){
+					endOfWord = s.length() -1;
+				}
+				nextWord = s.substring(0, endOfWord+1);
+				
+			}
+			printString += currentLine + "\n";
+		}
+			System.out.println(printString);
 	}
 	public static void talkForever(){
-		while(true){
-			promptInput();// forever input
+		inLoop = true;
+		while(inLoop){
+			print("Greetings, "+user+" . How are you? ");
+			response = getInput();
+			if(response.indexOf("good") >= 0){
+					print("I'm so happy you're good.");
+			}
+			else {
+				print("I'm sorry, I don't understand you.");
+			}
 		}
-	}
-	
-	public static void print (String s){
-		System.out.println(s);
 	}
 
 	public static void createAScanner() {
