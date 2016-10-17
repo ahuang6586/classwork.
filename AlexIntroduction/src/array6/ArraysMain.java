@@ -25,6 +25,8 @@ public class ArraysMain {
 		//in this method,we pass the element
 		//(a variable) not the array,so
 		//no change will be made
+		// change local not value you pass by
+		// equal changes what its pointing to
 		
 		System.out.println("Before "+someStrings[99]);
 		changeString(someStrings[99]);
@@ -108,4 +110,36 @@ public class ArraysMain {
 		System.out.println(s);
 	}
 	}
-}
+//	public static void arrayFifty(){
+//		firstStrings = new int [50];
+//		for(int index = 0; index < firstStrings.length; index ++ ){
+//			firstStrings[index] =  index+1);
+//			
+//		}
+//		
+//	}
+//	public static void randomArray(){
+//		String[] firstStrings = new String[10];
+//		for(int index = 0; index < firstStrings.length; index ++ ){
+//			firstStrings[index] =  (int)(Math.random() * 100);
+//			
+//		}
+//	}
+	public static void deckOfCards(){
+		int deck[] = new int [52];
+		String[] suits = {"Clubs","Hearts","Spades", "Diamonds"};
+		
+		String[] ranks = {"Ace","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"};	
+				for (int i = 0; i < 52; i++){
+
+		            String suit = suits[deck[i] / 13];
+
+		            String rank = ranks[deck[i] % 13];
+
+		            System.out.println ("");
+
+		        }
+		}
+	}
+	
+
