@@ -1,5 +1,5 @@
 package array6;
-
+//a
 import java.util.Scanner;
 
 public class LoginProgram {
@@ -24,6 +24,7 @@ public class LoginProgram {
 			System.out.println("Unknown user name, " + "please contact network administrator");
 		}
 	}
+	
 	private static boolean correctUser() {
 		System.out.println("Enter username.");
 		//1 point using .equals
