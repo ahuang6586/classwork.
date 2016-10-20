@@ -110,14 +110,11 @@ public class ArraysMain {
 		System.out.println(s);
 	}
 	}
-//	public static void arrayFifty(){
-//		firstStrings = new int [50];
-//		for(int index = 0; index < firstStrings.length; index ++ ){
-//			firstStrings[index] =  index+1);
-//			
-//		}
-//		
-//	}
+         private static void populateArrayNum(int[] a) {
+		for(int index = 0; index < a.length; index++){
+			a[index] =(index+1);
+		}
+	}
 //	public static void randomArray(){
 //		String[] firstStrings = new String[10];
 //		for(int index = 0; index < firstStrings.length; index ++ ){
@@ -125,20 +122,13 @@ public class ArraysMain {
 //			
 //		}
 //	}
-	public static void deckOfCards(){
-		int deck[] = new int [52];
-		String[] suits = {"Clubs","Hearts","Spades", "Diamonds"};
+	String[] cardSuit = {"Diamonds","Clubs","Hearts","Spades"};
+		String[] cardRanks = {"Ace","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"};
 		
-		String[] ranks = {"Ace","One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten","Jack","Queen","King"};	
-				for (int i = 0; i < 52; i++){
-
-		            String suit = suits[deck[i] / 13];
-
-		            String rank = ranks[deck[i] % 13];
-
-		            System.out.println ("");
-
-		        }
+		for(int suit = 0; suit < cardSuit.length;suit++){
+			for (int rank = 0; rank < cardRanks.length; rank++){
+				System.out.println(cardRanks[rank] + " of " + cardSuit[suit]);
+			}
 		}
 	}
 	
