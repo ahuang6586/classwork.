@@ -1,12 +1,16 @@
 package array6;
 
+import java.lang.reflect.Array;
+
 public class ArrayMethod {
 	public static void main(String[] args){
-		int[] arr = {2,3,4,6,9,11,12,15};
-		
+		int[] arr = {2,3,4,6,9,11,12,15,3,4,6,7,};
+		int[] subArr = getSubArray(arr,12,16);
+		contains(arr, subArr);
 		swap(arr, 0, arr.length-1);
 		shuffle(arr);
-		print(arr);
+		
+		
 		
 // unsorted,issorted,reverseorder,cyclethrough,count dif		
 //		checkHalfway(arr,12,0,arr.length-1);
@@ -39,7 +43,37 @@ private static void swap(int[] arr, int i, int j) {
 		// use place holder to make i
 		
 	}
+public static int[] getSubArray(int[] arr, int startIndex, int endIndex){
+	int[] subArray = new int[endIndex - startIndex + 1];
+	for(int i = 0; i < subArray.length; i++){
+		subArray[i] = arr[startIndex+ i];
+	}
+	return subArray;
+}
+/** 
+ * returns true if arr contains subArray sequence
+ * @param arr
+ * @param subArray
+ */
+public static boolean contains(int[] arr, int[] subArray){
+	for(int i = 0; i < arr.length; i++){
+		
+			//check the rest of the elements
+			int j = 0;
+			while(j < subArray.length){
+				if(subArray[j] == arr[i + j] && j == subArray.length - 1){
+					return true;
+				}else if(subArray[j] != arr[i + j]){
+					break;
+				}
+				j++;
+		}
+			
+	}
+	
 
+	return false;
+}
 /**
  * return true if searchValue is less than element
  * halfway between beginning and end
@@ -49,34 +83,49 @@ private static void swap(int[] arr, int i, int j) {
  * @param length
  */	
 
-	private void cycleOnce(int[] array){
-		swap(array, 1, 2);
-		(5,0),(0,1),(1,2),(2,3),(3,4);
+	/**
+	 * returns number of elements in arr less than d
+	 * @param arr
+	 * @param d
+	 * @return
+	 */
+	public static int countUnderBound(double[] arr, double d){
+		int underCount = 0;
+		for(double i:arr){
+			if(i<d){
+				underCount++;
+			}
+			
 	}
-	public static void cycleThrough(){
-		
-		for (int i = 0; i < array.length; i++){
-			cycleOnce();
-		}
+		return underCount;
 	}
-	private static boolean checkHalfway(int[] arr, int searchValue, int begin, int end) {
-		return searchValue < arr[(begin+end+1)/2];
-	}
-	
-}
-public static void selectionSort(int[] array){
-System.out.println("Selection sort with "+Arrays.toString(array));
-for (int i = 0; i < array.length - 1; i++){
-    int tempLowIndex = i;
-    for (int j = i + 1; j < array.length; j++){
-        if (array[j] < array[tempLowIndex]){
-            tempLowIndex = j;
-        }
-    }
-   if(tempLowIndex!=i){
-         swap(array, tempLowIndex, i);
-         System.out.println("becomes "+Arrays.toString(array));
-   } 
-   }//end for
-System.out.println("Ends as "+Arrays.toString(array));
+//	private void cycleOnce(int[] array){
+//		
+//	}
+//	public static void cycleThrough(int [] array){
+//		
+//		for (int i = 0; i < array.length; i++){
+//			cycleOnce();
+//		}
+//	}
+//	private static boolean checkHalfway(int[] arr, int searchValue, int begin, int end) {
+//		return searchValue < arr[(begin+end+1)/2];
+//	}
+//	
+//}
+//public static void selectionSort(int[] array){
+//System.out.println("Selection sort with "+Arrays.toString(array));
+//for (int i = 0; i < array.length - 1; i++){
+//    int tempLowIndex = i;
+//    for (int j = i + 1; j < array.length; j++){
+//        if (array[j] < array[tempLowIndex]){
+//            tempLowIndex = j;
+//        }
+//    }
+//   if(tempLowIndex!=i){
+//         swap(array, tempLowIndex, i);
+//         System.out.println("becomes "+Arrays.toString(array));
+//   } 
+//   }//end for
+//System.out.println("Ends as "+Arrays.toString(array));
 }//end method
