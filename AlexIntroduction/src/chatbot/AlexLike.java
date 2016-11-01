@@ -35,6 +35,7 @@ public class AlexLike implements Topic{
 			return true;
 		}
 		return false;
+		
 	}
 }
 //ge
