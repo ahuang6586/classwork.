@@ -1,0 +1,94 @@
+package caveExplorer;
+
+public class twoDArrayPrac {
+	public static void main(String[] args){
+		boolean[][] mines = new boolean [6][6];
+		createMines(mines, 10);
+		String[][] field = new String[mines.length][mines[0].length];
+		matchValues(field, mines);
+		printPic(field);
+	}
+
+	private static void matchValues(String[][] field, boolean[][] mines) {
+		for(int row = 0; row < field.length; row++){
+			for(int col = 0; col < field[0].length; col++){
+				if(mines[row][col])field[row][col]="X";
+				else{
+					field[row][col] = countAdjacent(mines, row, col);
+				}
+			}
+		}
+		
+	}
+
+	private static String countAdjacent(boolean[][] mines, int r, int c) {
+		//r and c represent coordinates of element we are providing
+		//String for
+		int count = 0;
+//		//loop through row above to row below
+//		for(int row = r-1; row <= r+1; row++){
+//			//loop through col left to col right
+//			for(int col = c-1; col <= c+1; col++){
+//				if(row !=r && col != c){
+//					if(row >=0 && row<mines.length && col >=0 && col < mines[row].length){
+//						
+//					}
+//				}
+//			}
+//		}	
+		// this method only checks elements in the [][]
+		//so it is not necessary to verify they are valid
+//		for(int row=0; row < mines.length; row++){
+//			for(int col = 0; col < mines[row].length; col++){
+//				//check taxi cab distance
+//				if(Math.abs(row - r)+Math.abs(col - c) ==1 
+//						//check if true
+//						//same speed if 9 values
+//						//this faster if less than 9 values
+//						&& mines[row][col]){
+//					count++;
+//				}
+//			}
+//		}
+		//this method is helpful when you want to be
+		// very specific
+		//above
+		count+=validAndTrue(mines, r-1,c);
+		count+=validAndTrue(mines,r+1,c);
+		count+=validAndTrue(mines,r,c+1);
+		count+=validAndTrue(mines,r,c-1);
+		return count +"";
+	}
+
+	private static int validAndTrue(boolean[][] mines, int i, int j) {
+		//checks valid first 
+		if(i>=0 && i<mines.length && j>= 0 && j < mines[0].length &&
+				//checks if true (AFTER checking Validity)
+				mines[i][j]){
+			return 1;
+		}
+		return 0;
+	}
+
+	private static void createMines(boolean[][] mines, int numberOfMines) {
+		while(numberOfMines > 0){
+			int row = (int)(Math.random()*mines.length);
+			int col = (int)(Math.random()*mines[0].length);
+			if(mines[row][col]){
+				mines[row][col] = true;
+				numberOfMines--;
+			}
+		}
+		
+	}
+	public static void printPic(String[][] pic){
+ 		for(String[] row : pic){
+ 			for(String col: row){
+ 				System.out.print(col);
+  			}
+  			System.out.println();
+  		}
+ 		
+ 
+  	}
+}
