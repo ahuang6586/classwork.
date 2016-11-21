@@ -1,0 +1,70 @@
+package packageEdwinAndAlex;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+import caveExplorer.CaveExplorer;
+
+public class AlexInput {
+	public static Scanner in = new Scanner(System.in);
+	static boolean[][] arr2D;
+	static String[][] pic;
+	
+	public AlexInput() {
+		arr2D = new boolean[5][5];
+		pic = new String[5][5];
+	}
+	
+	public static boolean winCondtion(boolean board[][]){
+		for (int i=0; i < board.length; i++) {
+		    for (int j=0; j < board[i].length; j++) {
+		        if (board[i][j] == false) {
+		            return false;
+		        }
+		    }
+		} 
+
+		return true;
+		
+	}
+	public static boolean isBetween(int value, int min, int max)
+	{
+	  return((value > min) && (value < max));
+	}
+	public static void selectCoord(int row, int col){
+		boolean inLoop = true;
+		while(inLoop){
+		System.out.println("Enter x and y coordinate.");
+		int trueX = in.nextInt();
+		int trueY = in.nextInt();
+		if(isBetween(trueX,0,6) && isBetween(trueY,0,6)){
+			inLoop = false;
+			arr2D[trueX][trueY] = true;
+		}
+		else{
+			System.out.println("Put a number between 0 and 5 inclusive.");
+		}
+			
+		}
+		
+		
+		
+		for (int i = 0; i < arr2D.length; i++) {
+		    System.out.println(Arrays.toString(arr2D[i]).replace("true", "*")
+		            .replace("false", "-"));
+		}
+	}
+	//a
+	
+//	private static void updatePic() {
+//		for(int row = 0; row < pic.length; row++){
+//
+//			
+//			for(int col = 0; col < pic[row].length; col++){
+//				if(arr2D[row][col])pic[row][col] = "-";
+//				else pic[row][col]="+";
+//			}
+//		}
+//	}
+
+}
