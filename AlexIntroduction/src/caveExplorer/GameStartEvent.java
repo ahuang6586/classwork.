@@ -35,7 +35,7 @@ public class GameStartEvent implements Event {
 	public static void readSequence(String[] seq) {
 		for(String s: seq){
 			CaveExplorer.print(s);
-			CaveExplorer.print("-----Press emter-----");
+			CaveExplorer.print("-----Press enter-----");
 			CaveExplorer.in.nextLine();
 		}
 		
