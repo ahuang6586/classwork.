@@ -2,6 +2,7 @@ package guis.components;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import  java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
@@ -42,6 +43,7 @@ public class Button extends TextLabel {
 		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
 		g.setFont(new Font(getFont(),Font.PLAIN,getSize()));//font is private
 		if(getText()!=null){
+			FontMetrics fm=g.getFontMetrics();
 			g.setColor(Color.white);
 			String t = getText();
 			int cutoff = t.length();
@@ -54,6 +56,11 @@ public class Button extends TextLabel {
 			
 	
 		
+	}
+	
+	public boolean isHovered(int x, int y) {
+		
+		return x>getX() && x<getX()+getWidth() && y > getY() && y < getY() + getHeight();
 	}
 	public void act(){
 		action.act();

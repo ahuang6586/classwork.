@@ -2,18 +2,24 @@ package guis.Screen;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import GUI.Screen;
+import guis.SampleGames.MouseFollower;
 import guis.components.Action;
 import guis.components.Button;
+import guis.components.Graphic;
+import guis.components.TextArea;
 import guis.components.TextLabel;
-import guis.components.Visibile;
+import guis.components.Visible;
 
-public class CoordinateScreen extends Screen implements MouseMotionListener{
+public class CoordinateScreen extends Screen implements MouseMotionListener, MouseListener{
 	private Button button;
 	private TextLabel text;
+	private TextArea area;
+	private Graphic face;
 	public CoordinateScreen(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -21,21 +27,30 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 	
 
 	@Override
-	public void initObjects(ArrayList<Visibile> viewObjects) {
+	public void initObjects(ArrayList<Visible> viewObjects) {
 		button = new Button(20,100,80,40,"Button",new Color(100,100,250),new Action(){
 			public void act(){
-				
+				MouseFollower.game.setScreen(MouseFollower.MyScreen);
 			}
 		});
-		TextLabel text = new TextLabel(20, 200, 500, 40, "Some text");
+		
+		viewObjects.add(button);
+		text = new TextLabel(20, 200, 500, 40, "Some text");
 		viewObjects.add(text);
+		area = new TextArea (20,200,500,100, "This is really long text. It prints over multiple lines, as you can see. We worked on this in class.It is called TextArea.");
+		viewObjects.add(area);
+		
+		face = new Graphic(30,30,100,100,"resources/sampleImages/face.jpg");
+		viewObjects.add(face);
+		
 		
 	}
 
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		
+		e.getX();
+		e.getY();
 		
 	}
 
@@ -49,7 +64,46 @@ public class CoordinateScreen extends Screen implements MouseMotionListener{
 		
 	}
 	public MouseMotionListener getMouseMotionListener(){
-		return this;
+		return this;//this screen is listening to the mouse
 	}
 
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(button.isHovered(e.getX(), e.getY())){
+			button.act();
+		}
+		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	public MouseListener getMouseListener(){
+		return this;//this screen allows you to click stuff
+	}
 }

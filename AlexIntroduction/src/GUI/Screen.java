@@ -8,21 +8,21 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import guis.components.Visibile;
+import guis.components.Visible;
 import java.awt.event.MouseListener;//
 import java.awt.event.MouseMotionListener;//
 public abstract class Screen {
 	
 	private BufferedImage image;
-	private ArrayList<Visibile> viewObjects;
+	private ArrayList<Visible> viewObjects;
 	public Screen(int width, int height) {
-		viewObjects = new ArrayList<Visibile>();
+		viewObjects = new ArrayList<Visible>();
 		initObjects(viewObjects);
 		initImage(width,height);
 	
 	}
 	public abstract void 
-	initObjects(ArrayList<Visibile> viewObjects);
+	initObjects(ArrayList<Visible> viewObjects);
 	private void initImage(int width, int height) {
 		image = new BufferedImage(width,height, BufferedImage.TYPE_INT_ARGB);
 		update();
@@ -36,7 +36,7 @@ public abstract class Screen {
 	public int getHeight(){
 		return image.getHeight();
 	}
-	private void update() {
+	public void update() {
 		// TODO Auto-generated method stub
 		Graphics2D g = image.createGraphics();
 		//smooth the graphics
@@ -48,7 +48,7 @@ public abstract class Screen {
 //		for (int i=0; i < viewObjects.size();i++){
 //			
 //		}
-		for(Visibile v: viewObjects){
+		for(Visible v: viewObjects){
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
 		//g.drawString("Hello World", 40, 100);

@@ -1,11 +1,15 @@
 package guis.SampleGames;
 
 import GUI.GUIApplication;
+import GUI.Screen;
 import guis.Screen.CoordinateScreen;
+import guis.components.MyScreen;
 
 public class MouseFollower extends GUIApplication {
 	public static MouseFollower game;//only one exist
-	private CoordinateScreen cs;
+	public static CoordinateScreen cs;
+	public static MyScreen MyScreen;
+	
 	public MouseFollower(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -13,6 +17,7 @@ public class MouseFollower extends GUIApplication {
 
 	@Override
 	public void initScreen() {
+		MyScreen = new MyScreen(getWidth(),getHeight());
 		cs = new CoordinateScreen(getWidth(),getHeight());
 		setScreen(cs);
 	}

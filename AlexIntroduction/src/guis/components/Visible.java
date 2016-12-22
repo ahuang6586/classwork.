@@ -2,7 +2,7 @@ package guis.components;
 
 
 import java.awt.image.BufferedImage;
-public interface Visibile {
+public interface Visible {
 	public BufferedImage getImage();
 	public int getX();
 	public int getY();

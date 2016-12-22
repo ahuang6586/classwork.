@@ -3,7 +3,7 @@ package guis.components;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-public abstract class Component implements Visibile {
+public abstract class Component implements Visible {
 
 	private int x;
 	private int y;
@@ -22,7 +22,7 @@ public abstract class Component implements Visibile {
 	@Override
 	public BufferedImage getImage() {
 	
-		return null;
+		return image;
 	}
 
 	@Override
