@@ -72,6 +72,12 @@ public abstract class Screen {
 	public MouseListener getMouseListener1(){//
 		return null;//
 	}//
+	public void addObject(Visible v){
+		viewObjects.add(v);
+	}
+	public void remove(Visible V){
+		viewObjects.remove(V);
+	}
 	
 					//	Arrays												ArrayList
 	//declaration	int[]numb<--primitive type								ArrayList<Integer>nums<--wrapper class make primitive type Capital and spelled out
