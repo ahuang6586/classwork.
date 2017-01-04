@@ -10,6 +10,10 @@ import javax.swing.JFrame;
 
 public abstract class GUIApplication extends JFrame implements Runnable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//FIELDS
 	private Screen currentScreen;
 	

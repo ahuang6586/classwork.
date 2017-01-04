@@ -6,8 +6,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
-import guiPractice.Screen;
-import guiPractice.components.Action;
+import guis.Screen;
+import guis.components.Action;
 import guiPractice.components.Button;
 import guiPractice.components.ClickableGraphic;
 import guiPractice.components.Graphic;
@@ -20,6 +20,7 @@ public class MyScreen extends Screen implements MouseMotionListener, MouseListen
 	
 	private Visible face;
 	private Graphic picture;
+	private guis.components.ClickableGraphic back;
 	
 	public MyScreen(int width, int height) {
 		super(width, height);
@@ -30,7 +31,7 @@ public class MyScreen extends Screen implements MouseMotionListener, MouseListen
 		face = new Graphic(30,40,100,100,"resources/sampleImages/face.jpg");
 		viewObjects.add(face);
 		picture=new ClickableGraphic(0,0,0.2,"resourses/sampleImages/face.png");
-		viewObjects.add(pictureTwo);
+		viewObjects.add(picture);
 		
 		
 	}
@@ -84,5 +85,6 @@ public class MyScreen extends Screen implements MouseMotionListener, MouseListen
 	}
 
 }
-	
 }
+	
+
