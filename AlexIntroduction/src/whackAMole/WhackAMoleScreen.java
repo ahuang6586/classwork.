@@ -17,6 +17,8 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 	public WhackAMoleScreen(int width, int height) {
 		super(width, height);
 		timeLeft = 30.0;
+		//when making Simon, creating a Thread like this is 
+		//necessary since Simon's Screen changes
 		Thread play = new Thread(this);
 		play.start();
 		// TODO Auto-generated constructor stub
@@ -58,7 +60,7 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 		label.setText("");
 		//since this is a timed game, we will use a while loop
 		//this is not necessary for games that 
-		//aren't timed
+		//aren't timed (like Simon)
 		while(timeLeft > 0){
 			updateTimer();
 			updateAllMoles();
@@ -66,34 +68,6 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 		}
 	}
 	private void appearNewMole() {
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		timeLeft-= .1;
-		//.1 is not a clean number in binary 
-		//so to fix the output, we use this little formula to round
-		//to the nearest tenth
-		timeLabel.setText(""+(int)(timeLeft*10)/10.0);
-	}
-
-	private void updateAllMoles() {
-		
-		for (int i =0; i < moles.size(); i++){
-			MoleInterface m = moles.get(i);
-			int screenTime = m.getAppearanceTime()-100;
-			m.setAppearanceTime(screenTime);
-			if(m.getAppearanceTime() <= 0){
-				remove(m);//remove from screen
-				moles.remove(m);
-				i--;//compensate for removal
-			}
-		}
-	}
-
-	private void updateTimer() {
 		double chance = .2*(60-timeLeft)/60;
 		if(Math.random() < chance){
 			//create a mole
@@ -113,6 +87,35 @@ public class WhackAMoleScreen extends ClickableScreen implements Runnable{
 		
 	}
 
+
+	private void updateAllMoles() {
+		
+		for (int i =0; i < moles.size(); i++){
+			MoleInterface m = moles.get(i);
+			int screenTime = m.getAppearanceTime()-100;
+			m.setAppearanceTime(screenTime);
+			if(m.getAppearanceTime() <= 0){
+				remove(m);//remove from screen
+				moles.remove(m);
+				i--;//compensate for removal
+			}
+		}
+	}
+
+	private void updateTimer() {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		timeLeft-= .1;
+		//.1 is not a clean number in binary 
+		//so to fix the output, we use this little formula to round
+		//to the nearest tenth
+		timeLabel.setText(""+(int)(timeLeft*10)/10.0);
+	}
+	//USE THIS METHOD IN "SIMON" TOO!
 	private void changeText(String string){
 		label.setText(string);
 		try{
