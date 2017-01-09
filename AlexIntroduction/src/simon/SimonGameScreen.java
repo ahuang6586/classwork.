@@ -1,5 +1,6 @@
 package simon;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import guis.components.ClickableScreen;
@@ -10,7 +11,7 @@ import whackAMole.MoleInterface;
 public class SimonGameScreen extends ClickableScreen implements Runnable {
 	private ArrayList<MoveInterface> moves;
 	private TextLabel label;
-	private ButtonInterfaceSimon buttons;
+	private ButtonInterfaceSimon[] buttons;
 	private ProgressInterface progress;
 	private int roundNumber;
 	private	boolean acceptingInput;
@@ -40,9 +41,22 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 	}
 
 	private Object randomMove() {
+		int select = (int) (Math.random()*buttons.length);
+		while(select == lastSelectedButton){
+			select = (int) (Math.random()*buttons.length);
+		}
+		lastSelectedButton = select;
+		return null;
+	
+		
+		
+		
+	}
+	private Object getMove(ButtonInterfaceSimon b) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
 	Placeholder until partner finishes implementation of ProgressInterface
 	*/
@@ -53,7 +67,20 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 
 	private void addButtons() {
 		// TODO Auto-generated method stub
-		
+		int numberOfButtons = 4;
+		Color[] colors = {Color.blue,Color.green,Color.yellow,Color.red};
+		String[] name = {"BLUE","GREEN","YELLOW","RED",};
+		for(int i = 0; i < numberOfButtons; i++){
+			buttons[i].setName(name[i]);
+			buttons[i].setColor(colors[i]);
+			buttons[i].setX(200+(i*20));
+		    buttons[i].setY(180+(i*20));
+		}
+	}
+
+	private ButtonInterfaceSimon getAButton() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
