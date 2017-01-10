@@ -3,6 +3,7 @@ package simon;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import guis.components.Action;
 import guis.components.ClickableScreen;
 import guis.components.TextLabel;
 import guis.components.Visible;
@@ -40,18 +41,19 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 
 	}
 
-	private Object randomMove() {
+	private ButtonInterfaceSimon randomMove() {
 		int select = (int) (Math.random()*buttons.length);
 		while(select == lastSelectedButton){
 			select = (int) (Math.random()*buttons.length);
 		}
 		lastSelectedButton = select;
-		return null;
-	
+	//	return new Move(buttons[select]);
+	 return null;
 		
 		
 		
 	}
+	
 	private Object getMove(ButtonInterfaceSimon b) {
 		// TODO Auto-generated method stub
 		return null;
@@ -69,15 +71,52 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		// TODO Auto-generated method stub
 		int numberOfButtons = 4;
 		Color[] colors = {Color.blue,Color.green,Color.yellow,Color.red};
-		String[] name = {"BLUE","GREEN","YELLOW","RED",};
 		for(int i = 0; i < numberOfButtons; i++){
-			buttons[i].setName(name[i]);
-			buttons[i].setColor(colors[i]);
-			buttons[i].setX(200+(i*20));
-		    buttons[i].setY(180+(i*20));
+			ButtonInterfaceSimon b = getAButton();
+			b.setColor(colors[i]);
+			b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
+			b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
+			b.setAction(new Action(){
+				public void act(){
+					Thread blink = new Thread(new Runnable(){
+
+						public void run(){
+							b.highlight();
+							
+							try {
+								Thread.sleep(800);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							b.dim();
+						
+						}
+						
+						});
+					blink.start();
+					
+					if(acceptingInput){
+						//if the user's button matches sequence
+						if(b==moves.get(sequenceIndex).getButton())
+							sequenceIndex++;
+						else{
+							progress.gameOver();
+							return;
+						}	
+					}
+					if(moves.size()==sequenceIndex){
+						Thread nextRound = new Thread(SimonGameScreen.this);
+						nextRound.start();
+						
+					}
+				}
+
+				
+			});
+			viewObjects.add(b);
 		}
 	}
-
 	private ButtonInterfaceSimon getAButton() {
 		// TODO Auto-generated method stub
 		return null;
@@ -85,6 +124,46 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
+		 label.setText("");
+		    nextRound();
+		
+	}
+
+	private void nextRound() {
+		acceptingInput=false;
+		roundNumber++;
+		moves.add((MoveInterface) randomMove());
+		progress.setRound(roundNumber);
+		progress.setSequenceSize(moves.size());
+		changeText("Simon's turn!");
+		label.setText("");
+		playSequence();
+		acceptingInput=true;
+		sequenceIndex=0;
+		
+	}
+
+	private void playSequence() {
+		ButtonInterfaceSimon b=null;
+		for(int i=0; i<moves.size();i++){
+			if(b!=null)
+				b.dim();
+			
+			b=moves.get(sequenceIndex).getButton();
+			b.highlight();
+			int sleepTime=1000*(int)Math.exp(roundNumber);
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		b.dim();
+		
+	}
+
+	private void changeText(String string) {
 		// TODO Auto-generated method stub
 		
 	}
