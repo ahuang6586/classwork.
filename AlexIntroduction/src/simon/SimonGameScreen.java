@@ -7,7 +7,7 @@ import guis.components.Action;
 import guis.components.ClickableScreen;
 import guis.components.TextLabel;
 import guis.components.Visible;
-import whackAMole.MoleInterface;
+
 
 public class SimonGameScreen extends ClickableScreen implements Runnable {
 	private ArrayList<MoveInterface> moves;
