@@ -11,6 +11,7 @@ import guis.SampleGames.MouseFollower;
 import guis.components.Action;
 import guis.components.Button;
 import guis.components.Graphic;
+import guis.components.MovingComponent;
 import guis.components.TextArea;
 import guis.components.TextLabel;
 import guis.components.Visible;
@@ -43,7 +44,11 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 		face = new Graphic(30,30,100,100,"resources/sampleImages/face.jpg");
 		viewObjects.add(face);
 		
-		
+		MovingComponent c = new MovingComponent(20,20,100,100);
+		viewObjects.add(c);
+		c.setVy(2);
+		c.setVx(1);
+		c.play();
 	}
 
 
