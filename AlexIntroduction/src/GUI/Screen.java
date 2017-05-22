@@ -36,12 +36,14 @@ public abstract class Screen {
 	public int getHeight(){
 		return image.getHeight();
 	}
+	
 	public void update() {
 		// TODO Auto-generated method stub
 		Graphics2D g = image.createGraphics();
 		//smooth the graphics
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
 		//rendering makes lines smoother less pixelated
+		
 		g.setColor(Color.pink);
 		g.fillRect(0, 0, image.getWidth(), image.getHeight());
 		g.setColor(Color.black);	
